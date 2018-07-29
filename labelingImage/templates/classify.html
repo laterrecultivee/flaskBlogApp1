@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div class="page-header">
+  <h1>Label your Images</h1>
+</div>
+
+{# <input type="text" name="category" value="category"> #}
+
+{# <img src="../static/images/{{ img }}"> #}
+<p class="resizeimage">
+  <img src="../static/images/{{ img }}">
+</p>
+
+<style type="text/css">
+p.resizeimage img { width: 80%; }
+/* p.resizeimage img { width: 80vw; } */
+</style>
+
+<form action="{{ url_for('moving')}}" method="post">
+{# <form class="" action="views" method="post" id="form-2"></form> #}
+
+  <input type="hidden" name="img_path" value="/Users/ryo/Desktop/testapp/labelingImage/static/images/{{ img }}">
+
+  {% if category_list %}
+
+  {% for category in category_list %}
+  <input type="radio" name="category" value="/Users/ryo/Desktop/testapp/labelingImage/static/labeled/{{ category }}">
+
+  {{ category }}
+  <br/>
+  {% endfor %}
+
+  {% else %}
+  Files Not Found. Plase update your image files.
+
+  {% endif %}
+
+  <input type="submit" value="submit">
+
+{% endblock %}

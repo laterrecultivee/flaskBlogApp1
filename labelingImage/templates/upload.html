@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="page-header"><h1>Upload Your Files</h1></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+  <div class="">
+    <strong>Files:</strong><br>
+    <label>
+      <span class="btn btn-primary">
+        SELECT FILE
+        <input id="file-picker" type="file" name="file" accept="image/*" multiple style="display:none">
+      </span>
+    </label>
+    <div id="msg"></div>
+  </div>
+
+  <label>
+    <span class="btn btn-success">
+      UPLOAD!
+      <input type="submit" value="Upload!" id="upload-button" style="display:none">
+    </span>
+  </label>
+</form>
+
+
+<script>
+    $("#file-picker").change(function(){
+        var input = document.getElementById('file-picker');
+        for (var i=0; i<input.files.length; i++)
+        {
+        //koala.jpg, koala.JPG substring(index) lastIndexOf('a') koala.1.jpg
+            var ext= input.files[i].name.substring(input.files[i].name.lastIndexOf('.')+1).toLowerCase()
+            if ((ext == 'jpg') || (ext == 'png'))
+            {
+                $("#msg").text("Files are supported")
+            }
+            else
+            {
+                $("#msg").text("Files are NOT supported")
+                document.getElementById("file-picker").value ="";
+            }
+        }
+    } );
+</script>
+
+{% endblock %}

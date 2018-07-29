@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div class="page-header">
+  <h1>Labeling Image</h1>
+</div>
+<br><h3>No Image Files<h3>
+
+<form action="/upload" method="post">
+<label>
+  <span class="btn btn-success">
+    Next
+  <input type="submit" style="display:none">
+  </span>
+</label>
+</form>
+
+{% endblock %}
